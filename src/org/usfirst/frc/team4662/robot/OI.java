@@ -67,6 +67,7 @@ public class OI {
 		SmartDashboard.putData("CameraFix", new CameraFix());
 		SmartDashboard.putData("TakePicture", new Snappy());
 		SmartDashboard.putData("ChangeDashBoardLayout", new DashboardToggle());
+		SmartDashboard.putData("SaveINI", new DashboardSaveINI());
 	}
 	
 	private JoystickButton JoystickButton(Joystick driveStick2, int i) {

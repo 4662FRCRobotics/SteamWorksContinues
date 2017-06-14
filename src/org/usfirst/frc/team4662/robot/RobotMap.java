@@ -1,7 +1,10 @@
 package org.usfirst.frc.team4662.robot;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -38,6 +41,27 @@ public class RobotMap {
 	public static int loaderMotor;
 		//not in init yet 
 	public static boolean bDashboardComp;
+	public static String fileIniName;
+	
+	private static void writeIni( String fileIni, String iniText ) {
+        BufferedWriter output = null;
+        try {
+            File file = new File( fileIni );
+            output = new BufferedWriter(new FileWriter(file));
+            output.write(iniText);
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        } finally {
+          if ( output != null ) {
+            try {
+				output.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+          }
+        }
+	}
 	
 	private static String readFile( String file ) throws IOException {
 		BufferedReader reader = new BufferedReader( new FileReader (file));
@@ -58,10 +82,11 @@ public class RobotMap {
 	}
 	
 	public static void init(){
+		fileIniName = "/home/lvuser/Robot.ini";
 		String strRobotINI;
         
         try {
-        	strRobotINI = readFile("/home/lvuser/Robot.ini");
+        	strRobotINI = readFile(fileIniName);
         	
         } catch (IOException e) {
         	strRobotINI = "comp";
@@ -95,4 +120,16 @@ public class RobotMap {
 	public static boolean isDashboardComp() {
 		return bDashboardComp;
 	}
+	
+	public static void writeIni() {
+		String strRobotIni;
+		if ( bDashboardComp ) {
+			strRobotIni = "comp";
+		} else {
+			strRobotIni = "test";
+		}
+		
+		writeIni(fileIniName, strRobotIni);
+	}
+	
 }
