@@ -94,7 +94,7 @@ public class RobotMap {
         if (strRobotINI == "comp") {
         	 bDashboardComp = true;
         } else {
-        	 bDashboardComp = false;
+        	 bDashboardComp = true;
         }
         
         //CAN

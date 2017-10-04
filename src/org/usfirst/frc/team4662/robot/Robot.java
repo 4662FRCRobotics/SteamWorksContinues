@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -84,6 +85,7 @@ public class Robot extends IterativeRobot {
 	
 		//Mats are very memory expensive. Reuse this Mat.
 		Mat mat = new Mat();
+		//Mat dispMat = new Mat();
 		
 		
 		//Cannot be "true" bc program will not exist. 
@@ -98,6 +100,7 @@ public class Robot extends IterativeRobot {
 				cvSinkShooter.setEnabled(true);
 				if(cvSinkShooter.grabFrame(mat) == 0) {
 					// Send the output the error
+					//mat.copyTo(dispMat);
 					outputStream.notifyError(cvSinkShooter.getError());
 					continue;
 				}
@@ -106,6 +109,9 @@ public class Robot extends IterativeRobot {
 				cvSinkGear.setEnabled(true);
 				if(cvSinkGear.grabFrame(mat) == 0) {
 					// Send the output the error
+					//Core.transpose(mat,dispMat);
+					//Core.flip(dispMat, dispMat, 1);
+					//mat.copyTo(dispMat);
 					outputStream.notifyError(cvSinkGear.getError());
 					continue;
 				}
