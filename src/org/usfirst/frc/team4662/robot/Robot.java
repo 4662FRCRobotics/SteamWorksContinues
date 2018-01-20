@@ -109,12 +109,9 @@ public class Robot extends IterativeRobot {
 				cvSinkGear.setEnabled(true);
 				if(cvSinkGear.grabFrame(mat) == 0) {
 					// Send the output the error
-					//Core.transpose(mat,dispMat);
-					//Core.flip(dispMat, dispMat, 1);
-					//mat.copyTo(dispMat);
 					outputStream.notifyError(cvSinkGear.getError());
 					continue;
-				}
+				} 
 			}
 			// Put a rectangle on the image
 			//Imgproc.rectangle(mat, new Point(60, 40), new Point(260, 200),
